@@ -10,6 +10,10 @@ import java.util.List;
 public class DBDaoImpl implements DBDao {
     @Override
     public List<BaseBean> getResult(String className,String[] args) {
+
+
         return null;
     }
+
+
 }

@@ -17,8 +17,9 @@ public class UserController {
     DBService dbService;
 
     @RequestMapping("/get")
-    public Object getUser(@RequestParam("name") String name){
-        String[] args = {name};
+    public Object getUser(@RequestParam("name") String name,
+                          @RequestParam("password") String password){
+        String[] args = {name,password};
         String className = "com.shou.hjn.entity.User";
         return dbService.getResultWithClassName(className,args);
     }

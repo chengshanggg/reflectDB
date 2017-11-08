@@ -12,7 +12,7 @@ public class JdbcTool {
 
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mysql","root","root");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","root");
         }catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {

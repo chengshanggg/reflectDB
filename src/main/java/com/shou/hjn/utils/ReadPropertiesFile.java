@@ -31,14 +31,16 @@ public class ReadPropertiesFile  {
     public void getSqlByName(){
         try{
             Properties properties = new Properties();
-            Resource resource = new ClassPathResource("sql.properties");
-            File file = resource.getFile();
-            properties.load(new InputStreamReader(new FileInputStream(file)));
-            // properties.load(new InputStreamReader(ReadPropertiesFile.class.getClassLoader().getResourceAsStream("sql.properties"),"UTF-8"));
+//            Resource resource = new ClassPathResource("sql.properties");
+//            File file = resource.getFile();
+//            properties.load(new InputStreamReader(new FileInputStream(file)));
+            properties.load(new InputStreamReader(ReadPropertiesFile.class.getClassLoader().getResourceAsStream("sql.properties"),"UTF-8"));
             Iterator<String> it = properties.stringPropertyNames().iterator();
             while (it.hasNext()){
                 String key = it.next();
-                sqlMap.put(key,properties.getProperty(key));
+                System.out.println();
+                if(key.trim() != "")
+                    sqlMap.put(key,properties.getProperty(key));
             }
 
         }catch (Exception e){

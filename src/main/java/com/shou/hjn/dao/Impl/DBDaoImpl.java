@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * Created by xiaoz on 2017/11/4.
  */
-@Component("DBDao")
+@Component
 public class DBDaoImpl implements DBDao {
     @Autowired
     ReadPropertiesFile readFile;
@@ -24,6 +24,7 @@ public class DBDaoImpl implements DBDao {
 
     @Override
     public List<BaseBean> getResult(String className,String[] args) {
+        readFile.getSqlByName();
         String[] sqlAndArgs = readFile.getMap().get(className).split(";");
         String sql = sqlAndArgs[0];
         String[] argsType = sqlAndArgs[1].split(",");

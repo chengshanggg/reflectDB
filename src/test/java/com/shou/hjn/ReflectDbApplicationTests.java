@@ -21,5 +21,6 @@ public class ReflectDbApplicationTests {
 	@Test
 	public void test(){
 		readPropertiesFile.getSqlByName();
+		System.out.println(readPropertiesFile.getMap().toString());
 	}
 }

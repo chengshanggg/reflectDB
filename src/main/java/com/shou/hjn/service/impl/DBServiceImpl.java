@@ -11,10 +11,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class DBServiceImpl implements DBService {
     @Autowired
-    DBDao dbDao;
+    DBDao dBDao;
 
     @Override
     public Object getResultWithClassName(String className, String[] args) {
-        return dbDao.getResult(className,args);
+        return dBDao.getResult(className,args);
     }
 }

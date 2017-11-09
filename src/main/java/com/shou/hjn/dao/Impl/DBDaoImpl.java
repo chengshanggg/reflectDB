@@ -87,11 +87,12 @@ public class DBDaoImpl implements DBDao {
                     }
                     //可根据应用继续添加
                 }
+                lists.add(bean);
             }
         }catch (Exception e){
             e.printStackTrace();
         }
-        return null;
+        return lists;
     }
 
 

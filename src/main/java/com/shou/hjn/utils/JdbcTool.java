@@ -6,13 +6,20 @@ import java.sql.*;
  * Created by xiaoz on 2017/11/6.
  */
 public class JdbcTool {
+    /**
+     * 获取连接
+     * @return
+     */
     public static Connection getConnection(){
 
-        Connection con = null;
+        String url = "jdbc:mysql://localhost:3306/test?useUnicode=true&amp;characterEncoding=utf-8";
+        String user = "root";
+        String password = "root";
 
+        Connection con = null;
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","root");
+            con = DriverManager.getConnection(url,user,password);
         }catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
@@ -21,6 +28,12 @@ public class JdbcTool {
         return con;
     }
 
+    /**
+     * 释放资源
+     * @param con
+     * @param rs
+     * @param ps
+     */
     public static void closeResource(Connection con, ResultSet rs, PreparedStatement ps){
         if(rs != null){
             try {

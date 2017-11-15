@@ -24,23 +24,22 @@ public class DBDaoImpl implements DBDao {
 
     @Override
     public List<BaseBean> getResult(String className,String[] args) {
-        readFile.getSqlByName();
         String[] sqlAndArgs = readFile.getMap().get(className).split(";");
         String sql = sqlAndArgs[0];
         String[] argsType = sqlAndArgs[1].split(",");
 
         // TODO: 2017/11/7 此处不应直接打印，需额外处理
-        if(className.trim() == "" || className == null){
+        if("".equals("className.trim()") ){
             System.out.println("找不到对应的类");
-            return new ArrayList<BaseBean>();
+            return new ArrayList<>();
         }
-        if(sql.trim() == "" || sql == null){
+        if("".equals(sql.trim())){
             System.out.println("sql语句不存在");
-            return new ArrayList<BaseBean>();
+            return new ArrayList<>();
         }
         if(args.length != argsType.length){
             System.out.println("参数不一致");
-            return new ArrayList<BaseBean>();
+            return new ArrayList<>();
         }
 
         Connection connection = null;
@@ -66,6 +65,13 @@ public class DBDaoImpl implements DBDao {
         return result;
     }
 
+    /**
+     * 结果集注入到实体类
+     * @param classPropertys 实体类
+     * @param resultSet 结果集
+     * @param clazz 类的class
+     * @return 实体类的list集合
+     */
     private List<BaseBean> setResult(List<ClassProperty> classPropertys, ResultSet resultSet, Class clazz) {
         List<BaseBean> lists = new ArrayList<>();
         try{
@@ -104,11 +110,10 @@ public class DBDaoImpl implements DBDao {
     private List<ClassProperty> getProperty(Class clazz) {
         List<ClassProperty> list = new ArrayList<>();
         Field[] fields = clazz.getDeclaredFields();
-        for(int i=0;i<fields.length;i++){
+        for (Field field : fields) {
             ClassProperty op = new ClassProperty();
-            Field f = fields[i];
-            op.setName(f.getName());
-            op.setType(f.getType().toString());
+            op.setName(field.getName());
+            op.setType(field.getType().toString());
             list.add(op);
 
         }

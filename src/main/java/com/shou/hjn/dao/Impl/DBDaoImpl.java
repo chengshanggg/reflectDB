@@ -137,6 +137,9 @@ public class DBDaoImpl implements DBDao {
                 if (argsType[i].equalsIgnoreCase("Integer")) {
                     ps.setInt(index++, Integer.valueOf(args[i]));
                 }
+                if (argsType[i].equalsIgnoreCase("Boolean")){
+                    ps.setBoolean(index++, Boolean.parseBoolean(args[i]));
+                }
                 //....可根据应用继续扩展
 
             }
